@@ -1,8 +1,9 @@
-import { title } from "process";
+import { getAllUsernames, insertUsernames } from "../db/queries.js";
 
-export const getUsers = (req, res) => {
-  console.log("usernames will be logged here - wip");
-  res.send("Hello world!!!");
+export const getUsernames = async (req, res) => {
+  const usernames = await getAllUsernames();
+  console.log("Usernames:", usernames);
+  res.send("Usernames:" + usernames.map((user) => user.username).join(", "));
 };
 
 export const usersCreateGet = (req, res) => {
