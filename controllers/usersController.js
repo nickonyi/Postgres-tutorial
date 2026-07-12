@@ -1,9 +1,16 @@
-import { getAllUsernames, insertUsernames } from "../db/queries.js";
+import {
+  getAllUsernames,
+  insertUsernames,
+  searchNames,
+} from "../db/queries.js";
 
 export const getUsernames = async (req, res) => {
   const usernames = await getAllUsernames();
   console.log("Usernames:", usernames);
-  res.send("Usernames:" + usernames.map((user) => user.username).join(", "));
+  res.render("index", {
+    title: "Username page",
+    users: usernames,
+  });
 };
 
 export const usersCreateGet = (req, res) => {
@@ -16,4 +23,14 @@ export const createUsernamePost = async (req, res) => {
   const { username } = req.body;
   await insertUsernames(username);
   res.redirect("/");
+};
+
+export const searchUsernamesGet = async (req, res) => {
+  const { username } = req.query;
+  const users = await searchNames(username);
+
+  res.render("index", {
+    title: "searched names",
+    users,
+  });
 };

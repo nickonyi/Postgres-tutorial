@@ -1,7 +1,9 @@
 import { Pool } from "pg";
+import dotenv from "dotenv";
+dotenv.config();
 
 const pool = new Pool({
-  connectionString: "postgresql://phatommobb:admin123@localhost:5432/top_users",
+  connectionString: process.env.DATABASE_URL,
 });
 
 export default pool;
