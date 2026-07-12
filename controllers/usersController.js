@@ -12,7 +12,8 @@ export const usersCreateGet = (req, res) => {
   });
 };
 
-export const usersCreatePost = (req, res) => {
-  console.log("username to be saved:", req.body.username);
-  res.redirect("/new");
+export const createUsernamePost = async (req, res) => {
+  const { username } = req.body;
+  await insertUsernames(username);
+  res.redirect("/");
 };

@@ -2,13 +2,13 @@ import { Router } from "express";
 import {
   getUsernames,
   usersCreateGet,
-  usersCreatePost,
+  createUsernamePost,
 } from "../controllers/usersController.js";
 
 const usersRoute = Router();
 
 usersRoute.get("/", getUsernames);
 usersRoute.get("/new", usersCreateGet);
-usersRoute.post("/new", usersCreatePost);
+usersRoute.post("/new", createUsernamePost);
 
 export default usersRoute;
