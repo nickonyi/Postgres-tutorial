@@ -16,3 +16,8 @@ export const searchNames = async (username) => {
   const { rows } = await pool.query(query, values);
   return rows;
 };
+
+export const deleteUsersFromDb = async () => {
+  const query = `DELETE FROM usernames`;
+  await pool.query(query);
+};

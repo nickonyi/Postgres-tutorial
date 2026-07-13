@@ -2,6 +2,7 @@ import {
   getAllUsernames,
   insertUsernames,
   searchNames,
+  deleteUsersFromDb,
 } from "../db/queries.js";
 
 export const getUsernames = async (req, res) => {
@@ -33,4 +34,9 @@ export const searchUsernamesGet = async (req, res) => {
     title: "searched names",
     users,
   });
+};
+
+export const deleteAllUsers = async (req, res) => {
+  await deleteUsersFromDb();
+  res.redirect("/");
 };
